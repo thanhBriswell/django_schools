@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>New Student Information</h1>
+{% if error_message %}
+    <div class="alert alert-success alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {{ error_message }}
+    </div>
+{% endif %}
+
+<form method="post" action="{% url 'student_add' %}">
+    {% csrf_token %}
+    <table id="student_add">
+        {{ form.as_table }}
+    </table>
+    {% comment %} <div class="row form-group">
+        {{ form.name.errors }}
+        <div class="col-3"><label for="name">Name:</label></div>
+        <div class="col-9">{{ form.name }}</div>
+    </div>
+    <div class="row form-group">
+        {{ form.class_name.errors }}
+        <div class="col-3"><label for="class">Class:</label></div>
+        <div class="col-9">{{ form.class_name }}</div>
+    </div> 
+    <div class="row form-group">
+        {{ form.address.errors }}
+        <div class="col-3"><label for="class">Address:</label></div>
+        <div class="col-9">{{ form.address }}</div>
+    </div> 
+    <div class="row form-group">
+        {{ form.birthday.errors }}
+        <div class="col-3"><label for="class">Birthday:</label></div>
+        <div class="col-9">{{ form.birthday }}</div>
+    </div>    {% endcomment %}
+    <br>
+    <div class="col-2"></div>
+    <div class="col-10 float-right"><button type="submit" class="btn btn-primary float-right">Insert</button></div>
+</form>
+{% endblock %}

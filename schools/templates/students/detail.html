@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Student Information</h1>
+{% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+<form method="post" action="{% url 'student_detail' student.id %}">
+    {% csrf_token %}
+    <div class="row form-group">
+        <div class="col-3"><label for="name">Name:</label></div>
+        <div class="col-9"><input type="text" class="form-control" name="name" value="{{ student.name }}" /></div>
+    </div>
+    <div class="row form-group">
+        <div class="col-3"><label for="class">Class:</label></div>
+        <div class="col-9"><input type="text" class="form-control" name="class_name" value="{{ student.class_name }}" /></div>
+    </div> 
+    <div class="row form-group">
+        <div class="col-3"><label for="class">Birthday:</label></div>
+        <div class="col-9"><input type="date" class="form-control" name="birthday" value="{{ student.birthday|date:"Y-m-d" }}" /></div>
+    </div>   
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+{% endblock %}
